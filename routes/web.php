@@ -45,6 +45,10 @@ Route::get('/trips', function () {
     return view('trips');
 })->middleware(['auth', 'verified'])->name('trips');
 
+Route::get('/sla', function () {
+    return view('sla');
+})->middleware(['auth', 'verified'])->name('sla');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

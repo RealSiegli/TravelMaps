@@ -1,4 +1,4 @@
-<x-form-section submit="updateProfileInformation">
+<x-form-section submit="updateConnectedAccounts">
     <x-slot name="title">
         {{ __('Connected Accounts') }}
     </x-slot>

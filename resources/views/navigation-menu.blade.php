@@ -48,6 +48,14 @@
                         {{ __('Blog') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('sla')" :active="request()->routeIs('sla')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
+                </div>
+
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -162,9 +170,9 @@
             </div>
             @else
                 <div class="-me-2 flex items-center">
-                    <a href="register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Register</a>
-                    <a href="login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</a>
-                    Please test!
+                <a href="/login" class="inline-block px-4 py-2 border border-darkgrey-500 text-darkgrey-500 bg-transparent hover:bg-darkgrey-500 hover:text-white transition-colors duration-300 rounded">Login</a>
+                <a href="/register" class="inline-block px-4 py-2 bg-blue-400 text-blue-700 hover:bg-blue-500 hover:text-blue-800 transition-colors duration-300 rounded">Register</a>
+
                 </div>
 
             @endauth
