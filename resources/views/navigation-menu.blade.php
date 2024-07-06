@@ -49,11 +49,14 @@
                     </x-nav-link>
                 </div>
 
+
+                @if(Auth::check() && Auth::user()->role === 'Admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sla')" :active="request()->routeIs('sla')">
                         {{ __('Admin') }}
                     </x-nav-link>
                 </div>
+                @endif
 
 
             </div>
