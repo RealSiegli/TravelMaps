@@ -2,7 +2,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AdminMenu extends Component
 {
@@ -10,7 +10,7 @@ class AdminMenu extends Component
 
     public function mount()
     {
-        $this->isAdmin = Auth::check() && Auth::user()->role === 'Admin';
+        $this->isAdmin = Gate::allows('admin');
     }
 
     public function render()

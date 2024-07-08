@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Middleware\AdminMiddleware;
+use App\Providers\AuthServiceProvider;
+
 
 
 // Sites that anybody can access
@@ -57,11 +58,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 
-// Sites, only logged in users with the role of 'Admin' can access
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/sla', [AdminController::class, 'index'])->name('sla');
-});
+Route::get('/sla', function () {
+    if (Gate::allows('admin')) {
+        return view('sla'); 
+    } else {
+        abort(403);
+    }
 
-
+})->name('sla');
 
