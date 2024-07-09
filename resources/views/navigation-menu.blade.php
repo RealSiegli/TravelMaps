@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <x-application-mark class="block h-12 w-auto" />
                     </a>
                 </div>
 
@@ -21,6 +21,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('referrals')" :active="request()->routeIs('referrals')">
+                        {{ __('Referrals') }}
                     </x-nav-link>
                 </div>
 
@@ -50,13 +56,13 @@
                 </div>
 
 
-                @if(Auth::check() && Auth::user()->role === 'Admin')
+                @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sla')" :active="request()->routeIs('sla')">
                         {{ __('Admin') }}
                     </x-nav-link>
                 </div>
-                @endif
+                @endcan
 
 
             </div>
@@ -195,18 +201,24 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         @auth
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+            </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('trips') }}" :active="request()->routeIs('trips')">
-                {{ __('My Trips') }}
-            </x-responsive-nav-link>
-        </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('trips') }}" :active="request()->routeIs('trips')">
+                    {{ __('My Trips') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('referrals') }}" :active="request()->routeIs('referrals')">
+                    {{ __('Referrals') }}
+                </x-responsive-nav-link>
         @endauth
+    
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('pricing') }}" :active="request()->routeIs('pricing')">
@@ -214,11 +226,6 @@
             </x-responsive-nav-link>
         </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
-                {{ __('About') }}
-            </x-responsive-nav-link>
-        </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('blog') }}" :active="request()->routeIs('blog')">

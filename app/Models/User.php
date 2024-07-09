@@ -30,6 +30,12 @@ class User extends Authenticatable
         'tiktok_handle',
         'twitter_handle',
         'password',
+        'role',
+        'banned_at',
+        'banned_until',
+        'locked_at',
+        'lock_reason',
+        'ban_reason',
     ];
 
     /**
@@ -63,6 +69,11 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'banned_at' => 'datetime',
+            'banned_until' => 'datetime',
+            'locked_at' => 'datetime',
+            'lock_reason' => 'string',
+
         ];
     }
     

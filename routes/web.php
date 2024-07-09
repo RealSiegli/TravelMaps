@@ -51,6 +51,10 @@ Route::get('/trips', function () {
     return view('trips');
 })->middleware(['auth', 'verified'])->name('trips');
 
+Route::get('/referrals', function () {
+    return view('referrals');
+})->middleware(['auth'])->name('referrals');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -58,16 +62,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
 
+// Sites, only admin can access
 Route::get('/sla', function () {
     if (Gate::allows('admin')) {
         return view('sla'); 
     } else {
         abort(403);
     }
-
 })->name('sla');
 
+
+
+
+// DEBUG AND TESTING PURPOSES ONLY!
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
